@@ -2,6 +2,7 @@ import * as Cookies from "js-cookie";
 import "whatwg-fetch";
 import CookieBar from "./cookie_bar";
 import TriggerMonitor from "./trigger_monitor";
+import { h, render } from "preact";
 
 import { Trigger } from "./trigger_monitor";
 
@@ -33,10 +34,10 @@ export default class TagManager {
   state: { [s: string]: any } = {};
 
   constructor() {
-    const { body } = document;
+    const { currentScript } = document;
 
-    this.configUrl = body.getAttribute("data-wtm-config") || this.window.wtm.config_url;
-    this.lazyUrl = body.getAttribute("data-wtm-lazy") || this.window.wtm.lazy_url;
+    this.configUrl = currentScript.getAttribute("data-wtm-config") || this.window.wtm.config_url;
+    this.lazyUrl = currentScript.getAttribute("data-wtm-lazy") || this.window.wtm.lazy_url;
 
     this.requestInit = {
       method: "GET",
@@ -85,7 +86,7 @@ export default class TagManager {
     }
 
     if (this.showCookiebar) {
-      new CookieBar(this);
+      render(<CookieBar manager={this} />, document.getElementById("wtm_cookie_bar"));
     }
 
     if (this.config.triggers && this.config.triggers.length > 0) {

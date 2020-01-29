@@ -69,7 +69,6 @@ to inject tags into a page before the response is send to a client.
     - [``WTM_COOKIE_EXPIRE``](#wtm_cookie_expire)
     - [``WTM_CACHE_TIMEOUT``](#wtm_cache_timeout)
     - [``WTM_PRESERVE_VARIABLES``](#wtm_preserve_variables)
-    - [``WTM_INJECT_STYLE``](#wtm_inject_style)
     - [``WTM_INJECT_SCRIPT``](#wtm_inject_script)
     - [``WTM_SUMMARY_PANELS``](#wtm_summary_panels)
     - [``WTM_CHROMEDRIVER_URL``](#wtm_chromedriver_url)
@@ -399,15 +398,6 @@ WTM_PRESERVE_VARIABLES = True
 Configures whether the variables are preserved for each request, or refreshed
 for each tag applied to a response. When set to `False`, a query will be done
 for each single tag which will add up quickly.
-
-### ``WTM_INJECT_STYLE``
-
-```python
-WTM_INJECT_STYLE = True
-```
-
-Change to `False` to prevent WTM's included styles from loading. This is useful
-if you wish to style the cookiebar yourself.
 
 ### ``WTM_INJECT_SCRIPT``
 

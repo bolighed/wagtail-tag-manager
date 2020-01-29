@@ -1,2 +1,9 @@
-.field.horizontal_checkbox_select_multiple ul{display:flex;flex-wrap:wrap}.field.horizontal_checkbox_select_multiple ul li{width:25%;min-width:280px}
+.field.horizontal_checkbox_select_multiple ul {
+  display: flex;
+  flex-wrap: wrap; }
+  .field.horizontal_checkbox_select_multiple ul li {
+    width: 25%;
+    min-width: 280px; }
 
+
+/*# sourceMappingURL=sourcemaps/checkbox_select_multiple.bundle.css.map*/

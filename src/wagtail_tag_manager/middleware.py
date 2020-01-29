@@ -63,21 +63,12 @@ class TagManagerMiddleware:
         if hasattr(self.response, "content"):
             doc = BeautifulSoup(self.response.content, "html.parser")
 
-            if doc.body:
-                doc.body["data-wtm-config"] = reverse("wtm:config")
-                doc.body["data-wtm-lazy"] = reverse("wtm:lazy")
-
-                if getattr(settings, "WTM_INJECT_STYLE", True):
-                    link = doc.new_tag("link")
-                    link["rel"] = "stylesheet"
-                    link["type"] = "text/css"
-                    link["href"] = static("wagtail_tag_manager/wtm.bundle.css")
-                    doc.body.append(link)
-
-                if getattr(settings, "WTM_INJECT_SCRIPT", True):
-                    script = doc.new_tag("script")
-                    script["type"] = "text/javascript"
-                    script["src"] = static("wagtail_tag_manager/wtm.bundle.js")
-                    doc.body.append(script)
+            if doc.body and getattr(settings, "WTM_INJECT_SCRIPT", True):
+                script = doc.new_tag("script")
+                script["type"] = "text/javascript"
+                script["src"] = static("wagtail_tag_manager/wtm.bundle.js")
+                script["data-wtm-config"] = reverse("wtm:config")
+                script["data-wtm-lazy"] = reverse("wtm:lazy")
+                doc.body.append(script)
 
             self.response.content = doc.decode()
